@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Zoo{% endblock %}
+
+{% block body %}
+    <h1>Create new Zoo</h1>
+
+    {{ include('zoo/_form.html.twig') }}
+
+    <a href="{{ path('app_zoo_index') }}">back to list</a>
+{% endblock %}

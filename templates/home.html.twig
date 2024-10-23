@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - Zoo Arcadia{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <!-- Présentation du Zoo -->
+    <section class="zoo-section mb-5">
+        <h1 class="text-center">Bienvenue au Zoo Arcadia</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{ zoo.image }}" alt="Zoo Image" class="img-fluid rounded">
+            </div>
+            <div class="col-md-6">
+                <h2>{{ zoo.name }}</h2>
+                <p>{{ zoo.description }}</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Les Habitats -->
+    <section class="habitat-section mb-5">
+        <h2 class="text-center">Nos Habitats</h2>
+        <div class="row">
+            {% for habitat in habitats %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="{{ habitat.image }}" alt="Image de {{ habitat.name }}" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ habitat.name }}</h5>
+                            <p class="card-text">{{ habitat.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Les Services -->
+    <section class="service-section mb-5">
+        <h2 class="text-center">Nos Services</h2>
+        <div class="row">
+            {% for service in services %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="{{ service.icon }} fa-3x mb-3"></i>
+                            <h5 class="card-title">{{ service.name }}</h5>
+                            <p class="card-text">{{ service.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Les Avis -->
+    <section class="comment-section mb-5">
+        <h2 class="text-center">Avis des Visiteurs</h2>
+        <div class="row">
+            {% for comment in comments %}
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ comment.user.name }}</h5>
+                            <p class="card-text">{{ comment.content }}</p>
+                            <p class="text-muted">{{ comment.createdAt|date('d/m/Y') }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}
