@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Connexion</h1>
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn btn-primary">{{ button_label|default('Se connecter') }}</button>
+    {{ form_end(form) }}
+    <p class="text-center">Pas encore de compte? <a href="{{ path('app_user_register') }}">Inscrivez-vous ici</a></p>
+{% endblock %}

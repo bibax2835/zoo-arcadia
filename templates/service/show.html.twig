@@ -15,6 +15,16 @@
                 <th>Name</th>
                 <td>{{ service.name }}</td>
             </tr>
+            <tr>
+                <th>Image</th>
+                <td>
+                    {% if service.image %}
+                        <img src="{{ asset('uploads/services/' ~ service.image) }}" alt="{{ service.name }}" style="max-width: 200px;">
+                    {% else %}
+                        <p>No image available</p>
+                    {% endif %}
+                </td>
+            </tr>
         </tbody>
     </table>
 

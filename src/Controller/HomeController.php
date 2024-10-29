@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ZooRepository;
 use App\Repository\HabitatRepository;
 use App\Repository\ServiceRepository;
 use App\Repository\CommentRepository;

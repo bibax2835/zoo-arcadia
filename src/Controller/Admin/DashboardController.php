@@ -34,13 +34,13 @@ class DashboardController extends AbstractDashboardController
     {
         return [
             MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
-            MenuItem::linkToCrud('Users', 'fa fa-user', User::class),
-            MenuItem::linkToCrud('Animals', 'fa fa-paw', Animal::class),
-            MenuItem::linkToCrud('Comments', 'fa fa-comments', Comment::class),
-            MenuItem::linkToCrud('Habitats', 'fa fa-tree', Habitat::class),
-            MenuItem::linkToCrud('Services', 'fa fa-concierge-bell', Service::class),
-            MenuItem::linkToCrud('Veterinary Reports', 'fa fa-file-medical', VeterinaryReport::class),
-            MenuItem::linkToCrud('Zoo', 'fa fa-building', Zoo::class),
+            MenuItem::linkToCrud('Users', 'fa fa-user', User::class)->setPermission('ROLE_ADMIN'),
+            MenuItem::linkToCrud('Animals', 'fa fa-paw', Animal::class)->setPermission('ROLE_EMPLOYEE'),
+            MenuItem::linkToCrud('Comments', 'fa fa-comments', Comment::class)->setPermission('ROLE_EMPLOYEE'),
+            MenuItem::linkToCrud('Habitats', 'fa fa-tree', Habitat::class)->setPermission('ROLE_EMPLOYEE'),
+            MenuItem::linkToCrud('Services', 'fa fa-concierge-bell', Service::class)->setPermission('ROLE_EMPLOYEE'),
+            MenuItem::linkToCrud('Veterinary Reports', 'fa fa-file-medical', VeterinaryReport::class)->setPermission('ROLE_VETERINARIAN'),
+            MenuItem::linkToCrud('Zoo', 'fa fa-building', Zoo::class)->setPermission('ROLE_ADMIN'),
         ];
     }
 }
