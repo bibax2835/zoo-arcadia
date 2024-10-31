@@ -23,6 +23,17 @@ class Contact
     #[ORM\Column(length: 255)]
     private ?string $mail = null;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $sentAt = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $reply = null;
+
+    public function __construct()
+    {
+        $this->sentAt = new \DateTime(); // Initialisation de la date de création du message
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +71,30 @@ class Contact
     public function setMail(string $mail): static
     {
         $this->mail = $mail;
+
+        return $this;
+    }
+
+    public function getSentAt(): ?\DateTimeInterface
+    {
+        return $this->sentAt;
+    }
+
+    public function setSentAt(\DateTimeInterface $sentAt): static
+    {
+        $this->sentAt = $sentAt;
+
+        return $this;
+    }
+
+    public function getReply(): ?string
+    {
+        return $this->reply;
+    }
+
+    public function setReply(?string $reply): static
+    {
+        $this->reply = $reply;
 
         return $this;
     }

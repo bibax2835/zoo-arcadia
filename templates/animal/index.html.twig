@@ -1,39 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Animal index{% endblock %}
+{% block title %}Nos Animaux{% endblock %}
 
 {% block body %}
-    <h1>Animal index</h1>
+    <section class="animal-section mb-5">
+        <h2 class="text-center">Nos Animaux</h2>
+        <div class="row">
+            {% for animal in animals %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        {% if animal.image %}
+                            <img src="{{ asset('uploads/animals/' ~ animal.image) }}" alt="Image de {{ animal.name }}" class="card-img-top">
+                        {% else %}
+                            <img src="{{ asset('images/default-animal.png') }}" alt="Image par défaut" class="card-img-top">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ animal.name }}</h5>
+                            <p class="card-text"><strong>Espèce :</strong> {{ animal.species }}</p>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Species</th>
-                <th>Image</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for animal in animals %}
-            <tr>
-                <td>{{ animal.id }}</td>
-                <td>{{ animal.name }}</td>
-                <td>{{ animal.species }}</td>
-                <td>{{ animal.image }}</td>
-                <td>
-                    <a href="{{ path('app_animal_show', {'id': animal.id}) }}">show</a>
-                    <a href="{{ path('app_animal_edit', {'id': animal.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_animal_new') }}">Create new</a>
+                            {% if animal.habitat|length > 0 %}
+                                <p class="card-text"><strong>Habitat :</strong> 
+                                    {% for habitat in animal.habitat %}
+                                        {{ habitat.name }}{% if not loop.last %}, {% endif %}
+                                    {% endfor %}
+                                </p>
+                            {% else %}
+                                <p class="card-text"><strong>Habitat :</strong> Non spécifié</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="col-12">
+                    <p>Aucun animal n'a été trouvé.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}

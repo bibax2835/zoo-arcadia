@@ -1,39 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Habitat index{% endblock %}
+{% block title %}Nos Habitats{% endblock %}
 
 {% block body %}
-    <h1>Habitat index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Image</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for habitat in habitats %}
-            <tr>
-                <td>{{ habitat.id }}</td>
-                <td>{{ habitat.name }}</td>
-                <td>{{ habitat.description }}</td>
-                <td>{{ habitat.image }}</td>
-                <td>
-                    <a href="{{ path('app_habitat_show', {'id': habitat.id}) }}">show</a>
-                    <a href="{{ path('app_habitat_edit', {'id': habitat.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_habitat_new') }}">Create new</a>
+    <section class="habitat-section mb-5">
+        <h2 class="text-center">Nos Habitats</h2>
+        <div class="row">
+            {% for habitat in habitats %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        {% if habitat.image %}
+                            <img src="{{ asset('uploads/habitats/' ~ habitat.image) }}" alt="Image de {{ habitat.name }}"
+                                 class="card-img-top">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ habitat.name }}</h5>
+                            <p class="card-text">{{ habitat.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}

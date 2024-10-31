@@ -10,7 +10,6 @@
         <div class="row">
             <div class="col-md-12">
                 <p>{{ zoo.description }}</p>
-                <p>Horaires : {{ zoo.horaires }}</p>
             </div>
         </div>
     </section>
@@ -20,46 +19,48 @@
         <h2 class="text-center">Nos Habitats</h2>
         <div class="row">
             {% for habitat in habitats %}
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        {% if habitat.image %}
-                            <img src="{{ asset('uploads/habitats/' ~ habitat.image) }}" alt="Image de {{ habitat.name }}" class="card-img-top">
-                        {% endif %}
-                        <div class="card-body">
-                            <h5 class="card-title">{{ habitat.name }}</h5>
-                            <p class="card-text">{{ habitat.description }}</p>
-                        </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    {% if habitat.image %}
+                    <img src="{{ asset('uploads/habitats/' ~ habitat.image) }}" alt="Image de {{ habitat.name }}"
+                        class="card-img-top">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ habitat.name }}</h5>
+                        <p class="card-text">{{ habitat.description }}</p>
                     </div>
                 </div>
+            </div>
             {% endfor %}
         </div>
     </section>
 
     <!-- Les Services -->
-<section class="service-section mb-5">
-    <h2 class="text-center">Nos Services</h2>
-    <div class="row">
-        {% for service in services %}
+    <section class="service-section mb-5">
+        <h2 class="text-center">Nos Services</h2>
+        <div class="row">
+            {% for service in services %}
             <div class="col-md-4 mb-4">
                 <div class="card">
                     <div class="card-body text-center">
                         {% if service.image %}
-                            <img src="{{ asset('uploads/services/' ~ service.image) }}" alt="Image de {{ service.name }}" class="img-fluid mb-3">
+                        <img src="{{ asset('uploads/services/' ~ service.image) }}" alt="Image de {{ service.name }}"
+                            class="img-fluid mb-3">
                         {% endif %}
                         <h5 class="card-title">{{ service.name }}</h5>
                     </div>
                 </div>
             </div>
-        {% endfor %}
-    </div>
-</section>
+            {% endfor %}
+        </div>
+    </section>
 
 
     <!-- Les Avis -->
-<section class="comment-section mb-5">
-    <h2 class="text-center">Avis des Visiteurs</h2>
-    <div class="row">
-        {% for comment in comments %}
+    <section class="comment-section mb-5">
+        <h2 class="text-center">Avis des Visiteurs</h2>
+        <div class="row">
+            {% for comment in comments %}
             <div class="col-md-6 mb-4">
                 <div class="card">
                     <div class="card-body">
@@ -68,9 +69,9 @@
                     </div>
                 </div>
             </div>
-        {% endfor %}
-    </div>
-</section>
+            {% endfor %}
+        </div>
+    </section>
 
 </div>
 {% endblock %}

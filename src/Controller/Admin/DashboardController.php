@@ -15,6 +15,7 @@ use App\Entity\Habitat;
 use App\Entity\Service;
 use App\Entity\VeterinaryReport;
 use App\Entity\Zoo;
+use App\Entity\Contact;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -41,6 +42,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Services', 'fa fa-concierge-bell', Service::class)->setPermission('ROLE_EMPLOYEE'),
             MenuItem::linkToCrud('Veterinary Reports', 'fa fa-file-medical', VeterinaryReport::class)->setPermission('ROLE_VETERINARIAN'),
             MenuItem::linkToCrud('Zoo', 'fa fa-building', Zoo::class)->setPermission('ROLE_ADMIN'),
+            MenuItem::linkToCrud('Contacts', 'fa fa-envelope', Contact::class)->setPermission('ROLE_EMPLOYEE'),
         ];
     }
 }

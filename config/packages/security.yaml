@@ -50,6 +50,7 @@ security:
         - { path: ^/login, roles: PUBLIC_ACCESS }
         - { path: ^/register, roles: PUBLIC_ACCESS }
         - { path: ^/, roles: ROLE_USER }
+        - { path: ^/contact, roles: ROLE_EMPLOYEE }
         # Autoriser l'accès à l'authentification et l'enregistrement à tous les utilisateurs
         #- { path: ^/login$, roles: PUBLIC_ACCESS }
         # - { path: ^/register$, roles: PUBLIC_ACCESS }
