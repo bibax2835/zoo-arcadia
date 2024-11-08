@@ -6,6 +6,7 @@ use App\Entity\Animal;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -40,6 +41,13 @@ class AnimalCrudController extends AbstractCrudController
                 ->setFormTypeOption('by_reference', false)
                 ->setLabel('Habitat(s)')
                 ->onlyOnForms(),
+
+            // Champ pour saisir la description
+            TextareaField::new('description')
+                ->setLabel('Description'),
+
+            TextField::new('slug')
+                ->setLabel('Slug')
         ];
     }
 }

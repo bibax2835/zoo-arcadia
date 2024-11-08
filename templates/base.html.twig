@@ -4,60 +4,73 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+    body {
+        font-family: 'Open Sans', sans-serif;
+        color: var(--text-color);
+    }
+    h1, h2, h3, .navbar-brand {
+        font-family: 'Playfair Display', serif;
+    }
+</style>
 
         {% block stylesheets %}
         {% endblock %}
 
         {% block javascripts %}
+        
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
     <body>
-        {% block navbar %}
-        <nav class="navbar navbar-expand-lg sticky-top" data-bs-theme="dark">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse d-flex justify-content-between align-items-center" id="navbarSupportedContent">
-                    <!-- Section gauche -->
-                    <ul class="navbar-nav me-auto fs-4">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{ path('home') }}">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('animal_index') }}">Animaux</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('habitat_index') }}">Habitats</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('service_index') }}">Services</a>
-                        </li>
-                    </ul>
-        
-                    <!-- Logo centré -->
-                    <a class="navbar-brand fs-2" href="{{ path('home') }}">Arcadia</a>
-        
-                    <!-- Section droite -->
-                    <ul class="navbar-nav ms-auto fs-4">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('contact') }}">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-       
-        {% endblock %}
+      {% block navbar %}
+      <nav class="navbar navbar-expand-lg sticky-top" data-bs-theme="dark">
+          <div class="container-fluid">
+              <!-- Logo à gauche -->
+              <a class="navbar-brand navbar-brand-custom me-auto fs-4" href="{{ path('home') }}">Zoo Arcadia</a>
+  
+              <!-- Bouton pour le menu responsive sur petits écrans -->
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+  
+              <!-- Contenu du menu avec liens alignés à droite -->
+              <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+                  <!-- Section des liens de navigation -->
+                  <ul class="navbar-nav fs-4">
+                      <li class="nav-item">
+                          <a class="nav-link active" href="{{ path('home') }}">Accueil</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="{{ path('animal_index') }}">Animaux</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="{{ path('habitat_index') }}">Habitats</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="{{ path('service_index') }}">Services</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="{{ path('contact') }}">Contact</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+  {% endblock %}
+  
 
         
 
         {% block body %}{% endblock %}
 
         {% block footer %}
-        <footer class="bg-light container-fluid p-0">
+        <footer class="container-fluid p-0">
             <div class="bg-brown-cust d-flex justify-content-around align-items-center flex-row" style="height: 80px;">
               <div>
                   <a href="#" class="link-cust mx-1">

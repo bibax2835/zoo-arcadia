@@ -5,12 +5,14 @@ namespace App\Entity;
 use App\Repository\AnimalRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: AnimalRepository::class)]
-#[Vich\Uploadable] // Annotation pour indiquer que l'entité est uploadable
+#[Vich\Uploadable]
 class Animal
 {
     #[ORM\Id]
@@ -27,12 +29,17 @@ class Animal
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
-    // Ce champ n'est pas persisté en base de données
     #[Vich\UploadableField(mapping: 'animal_image', fileNameProperty: 'image')]
     private ?File $imageFile = null;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
     private ?\DateTimeInterface $updatedAt = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $description = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
 
     /**
      * @var Collection<int, VeterinaryReport>
@@ -99,7 +106,6 @@ class Animal
     {
         $this->imageFile = $imageFile;
 
-        // Mettre à jour la date de modification si un fichier est téléchargé
         if ($imageFile instanceof File) {
             $this->updatedAt = new \DateTime();
         }
@@ -167,11 +173,57 @@ class Animal
         return $this;
     }
 
-    /**
-     * Convert the object to a string (for displaying in forms)
-     */
     public function __toString(): string
     {
-        return $this->name ?? ''; // Gérer les cas où le nom est null
+        return $this->name ?? '';
     }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    
+
+
+public function getSlug(): ?string
+{
+    return $this->slug;
+}
+
+public function setSlug(string $slug = null): static
+{
+    if ($slug) {
+        $this->slug = $slug;
+    } else if ($this->name) {
+        // Utilise le nom pour générer un slug automatiquement si le slug n'est pas défini
+        $this->slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $this->name), '-'));
+    }
+
+    return $this;
+}
+// Dans un contrôleur temporaire ou une commande de console
+public function generateSlugs(EntityManagerInterface $entityManager): Response
+{
+    $animals = $entityManager->getRepository(Animal::class)->findAll();
+
+    foreach ($animals as $animal) {
+        if (empty($animal->getSlug())) {
+            // Génére un slug en utilisant le nom
+            $animal->setSlug(strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $animal->getName()), '-')));
+        }
+    }
+
+    // Sauvegarde les modifications
+    $entityManager->flush();
+
+    return new Response("Tous les slugs manquants ont été générés.");
+}
+
 }

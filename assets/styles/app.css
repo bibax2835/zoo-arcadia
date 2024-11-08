@@ -1,9 +1,133 @@
 
 
 img {
-    max-height: 180px;
-    max-width:200px;
+    max-height: 380px;
+    max-width:400px;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
+
+img:hover {
+    transform: 1.2;
+    transition: transform 0.3s ease-in-out;
+}
+
+.navbar {
+    background-color: rgba(93, 107, 74, 0.8); /* Vert mousse avec opacité */
+}
+.navbar .nav-link {
+    color: white !important;
+}
+.navbar .nav-link:hover {
+    color: var(--accent-color) !important;
+    text-decoration: underline;
+}
+
+footer {
+    background-color: rgba(93, 107, 74, 0.8) !important;
+    color: white;
+}
+footer a {
+    color: white;
+    transition: color 0.3s;
+}
+footer a:hover {
+    color: var(--accent-color);
+}
+
+.btn-outline-secondary {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+.btn-outline-secondary:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.scale:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.navbar-brand-custom {
+    color: #fff;
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+.navbar-brand {
+    color: white !important;
+}
+
+.navbar-brand:hover {
+    color: #b8a07e !important;
+}
+
+body {
+    background-color: #b8a07e;
+}
+
+.card {
+    background-color: #8c6c48;
+    color: white;
+}
+
+.home-baner {
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+}
+.cover-image {
+    object-fit: cover; /* Permet de remplir l'espace sans déformer l'image */
+    width: 100%; /* Assure que l'image prend toute la largeur */
+}
+
+.card-img-top {
+    border-radius: 15px;
+    margin-top: 15px;
+}
+
+.img-fluid {
+    border-radius: 15px;
+}
+
+.img-thumbnail {
+    max-width: 800px; /* Définissez la largeur souhaitée */
+    height: auto !important; /* Permet de maintenir l'aspect ratio de l'image */
+    /* max-width: 100%; Assurez-vous que l'image ne soit pas trop large */
+    transition: transform 0.3s ease; /* Transition douce */
+}
+
+.img-thumbnail:hover {
+    transform: scale(1.2); /* Agrandit l'image de 20% *
+}
+
+.
+/* Styles de base pour la vignette */
+.thumbnail {
+    width: 200px; /* Taille de la vignette */
+    cursor: pointer;
+  }
+  
+  .btn{
+    background-color: #b8a07e; /* Couleur de fond */
+  }
+
+  /* .text-center {
+    margin-top: 20px;
+  } */
+
+  img-fluid {
+    max-width: 1000px !important;
+    height: auto !important;
+  }

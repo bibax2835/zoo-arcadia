@@ -3,17 +3,18 @@
 {% block title %}Accueil - Zoo Arcadia{% endblock %}
 
 {% block body %}
-<div class="container mt-5">
-    <!-- Présentation du Zoo -->
-    <section class="zoo-section mb-5">
-        <h1 class="text-center">Bienvenue au Zoo Arcadia</h1>
-        <div class="row">
-            <div class="col-md-12">
-                <p>{{ zoo.description }}</p>
-            </div>
+<!-- Présentation du Zoo -->
+<section class="home-baner mb-5" style="background-image: url('{{ asset('uploads/zoo/pont.jpg') }}');">
+    
+    <h1 class="text-center">Bienvenue au Zoo Arcadia</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <p>{{ zoo.description }}</p>
         </div>
-    </section>
-
+    </div>
+</section>
+<div class="container mt-5">
+    
     <!-- Les Habitats -->
     <section class="habitat-section mb-5">
         <h2 class="text-center">Nos Habitats</h2>

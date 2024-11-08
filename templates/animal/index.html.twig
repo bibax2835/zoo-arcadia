@@ -7,6 +7,7 @@
         <h2 class="text-center">Nos Animaux</h2>
         <div class="row">
             {% for animal in animals %}
+       
                 <div class="col-md-4 mb-4">
                     <div class="card">
                         {% if animal.image %}
@@ -15,7 +16,7 @@
                             <img src="{{ asset('images/default-animal.png') }}" alt="Image par défaut" class="card-img-top">
                         {% endif %}
                         <div class="card-body">
-                            <h5 class="card-title">{{ animal.name }}</h5>
+                            
                             <p class="card-text"><strong>Espèce :</strong> {{ animal.species }}</p>
 
                             {% if animal.habitat|length > 0 %}
@@ -27,6 +28,10 @@
                             {% else %}
                                 <p class="card-text"><strong>Habitat :</strong> Non spécifié</p>
                             {% endif %}
+                            <h5 class="card-title">
+                                <a href="{{ path('animal_details', { 'slug': animal.slug }) }}" class="btn btn-primary">Voir les détails</a>
+
+                            </h5>
                         </div>
                     </div>
                 </div>
