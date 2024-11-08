@@ -59,19 +59,55 @@
 
     <!-- Les Avis -->
     <section class="comment-section mb-5">
-        <h2 class="text-center">Avis des Visiteurs</h2>
-        <div class="row">
-            {% for comment in comments %}
-            <div class="col-md-6 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <p class="card-text">{{ comment.content }}</p>
-                        <p class="text-muted">{{ comment.createdAt|date('d/m/Y') }}</p>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
+        <h2 class="text-center">Avis des visiteurs</h2>
+
+<div>
+    {% for comment in comments %}
+        <div class="comment mb-3 p-3 border rounded">
+            <strong>{{ comment.pseudonym }}</strong> : {{ comment.content }}
         </div>
+    {% endfor %}
+</div>
+
+<!-- Bouton pour afficher la modal -->
+<button id="showReviewForm" class="btn btn-primary mt-3">Laissez un avis</button>
+
+<!-- Modal Bootstrap -->
+<div id="reviewFormModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Laissez un avis</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{ form_start(form) }}
+                    <div class="form-group">
+                        {{ form_label(form.pseudonym) }}
+                        {{ form_widget(form.pseudonym, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.content) }}
+                        {{ form_widget(form.content, { 'attr': {'class': 'form-control', 'rows': 4} }) }}
+                    </div>
+                    <button type="submit" class="btn btn-success mt-2">Envoyer</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Script JavaScript pour gérer la modal -->
+<script>
+    document.getElementById('showReviewForm').addEventListener('click', function () {
+        $('#reviewFormModal').modal('show');
+    });
+    document.querySelector('.close').addEventListener('click', function () {
+        $('#reviewFormModal').modal('hide');
+    });
+</script>
     </section>
 
 </div>

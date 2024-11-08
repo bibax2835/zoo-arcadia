@@ -1,5 +1,7 @@
 <?php
 
+// src/Entity/Comment.php
+
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
@@ -20,16 +22,12 @@ class Comment
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
+    #[ORM\Column(length: 50)]
+    private ?string $pseudonym = null; // Ajout de la propriété pseudonym
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function setId(int $id): static
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     public function getContent(): ?string
@@ -52,6 +50,18 @@ class Comment
     public function setCreatedAt(\DateTimeInterface $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getPseudonym(): ?string
+    {
+        return $this->pseudonym;
+    }
+
+    public function setPseudonym(string $pseudonym): static
+    {
+        $this->pseudonym = $pseudonym;
 
         return $this;
     }
